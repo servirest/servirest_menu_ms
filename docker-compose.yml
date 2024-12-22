@@ -1,0 +1,14 @@
+services:
+  servirest_menu:
+    image: postgres:latest
+    container_name: servirest_menu
+    restart: always
+    environment:
+      POSTGRES_DB: servirest_menu
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Clave123* 
+    volumes:
+      - ./servirest_menu_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
