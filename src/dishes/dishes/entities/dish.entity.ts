@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Subcategory } from '../../sub_categories/entities/sub_category.entity';
+import { Subcategory } from '../../../subcategories/entities/subcategory.entity';
 import { DishIngredient } from '../../dish_ingredients/entities/dish_ingredient.entity';
 
 @Entity('dishes')

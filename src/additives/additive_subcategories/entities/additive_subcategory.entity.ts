@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Additive } from '../../additives/entities/additive.entity';
-import { Subcategory } from '../../sub_categories/entities/sub_category.entity';
+import { Subcategory } from '../../../subcategories/entities/subcategory.entity';
 
 @Entity('additive_subcategories')
 export class AdditiveSubcategory {

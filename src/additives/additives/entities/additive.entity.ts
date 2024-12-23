@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { AdditiveIngredient } from '../../additive_ingredients/entities/additive_ingredient.entity';
-import { AdditiveSubcategory } from '../../additive_sub_categories/entities/additive_sub_category.entity';
+import { AdditiveSubcategory } from '../../additive_subcategories/entities/additive_subcategory.entity';
 
 @Entity('additives')
 export class Additive {

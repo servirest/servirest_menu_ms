@@ -33,4 +33,3 @@ export class AdditiveIngredientsController {
     return this.additiveIngredientsService.remove(id);
   }
 }
-

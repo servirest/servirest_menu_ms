@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Subcategory } from '../../sub_categories/entities/sub_category.entity';
+import { Subcategory } from '../../subcategories/entities/subcategory.entity';
 
 @Entity('categories')
 export class Category {
@@ -22,5 +22,5 @@ export class Category {
   status: boolean;
 
   @OneToMany(() => Subcategory, (subcategory) => subcategory.category)
-  subcategories: Subcategory[];
+  subcategories: Subcategory[] | null;
 }

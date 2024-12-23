@@ -2,23 +2,25 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
-import { SubCategoriesModule } from './sub_categories/sub_categories.module';
-import { DishesModule } from './dishes/dishes.module';
-import { DishIngredientsModule } from './dish_ingredients/dish_ingredients.module';
-import { AdditiveIngredientsModule } from './additive_ingredients/additive_ingredients.module';
-import { AdditiveSubCategoriesModule } from './additive_sub_categories/additive_sub_categories.module';
-import { AdditivesModule } from './additives/additives.module';
+import { SubcategoriesModule } from './subcategories/subcategories.module';
+import { AdditivesModule } from './additives/additives/additives.module';
+import { AdditiveIngredientsModule } from './additives/additive_ingredients/additive_ingredients.module';
+import { AdditiveSubcategoriesModule } from './additives/additive_subcategories/additive_subcategories.module';
+import { DishesModule } from './dishes/dishes/dishes.module';
+import { DishIngredientsModule } from './dishes/dish_ingredients/dish_ingredients.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { envs } from './config/envs';
+
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres', 
-      host: process.env.POSRGRES_HOTS || 'localhost',
-      port: parseInt(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DATABASE,
+      host: envs.postgres.host,
+      port: envs.postgres.port,
+      username: envs.postgres.username,
+      password: envs.postgres.password,
+      database: envs.postgres.database,
       autoLoadEntities: true, //solo en desarrollo
       //entities: [User], usar en producción
       synchronize: true,
@@ -32,12 +34,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       } */
     }),
     CategoriesModule,
-    SubCategoriesModule,
+    SubcategoriesModule,
     DishesModule,
     DishIngredientsModule,
     AdditiveIngredientsModule,
-    AdditiveSubCategoriesModule,
+    AdditiveSubcategoriesModule,
     AdditivesModule,
+    AdditiveSubcategoriesModule,
+    SubcategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
