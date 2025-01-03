@@ -9,7 +9,8 @@ import { AdditiveSubcategoriesModule } from './additives/additive_subcategories/
 import { DishesModule } from './dishes/dishes/dishes.module';
 import { DishIngredientsModule } from './dishes/dish_ingredients/dish_ingredients.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { envs } from './config/envs';
+import { envs } from './config';
+
 
 
 @Module({
@@ -42,6 +43,7 @@ import { envs } from './config/envs';
     AdditivesModule,
     AdditiveSubcategoriesModule,
     SubcategoriesModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { envs } from './config/envs';
 
 async function bootstrap() {
+  const logger = new Logger('menu-management-service');
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.TCP, 
     options: {
@@ -19,7 +20,7 @@ async function bootstrap() {
     })
   )
   await app.listen();
-  console.log(`Microservice is listening on port ${envs.port}`);
-  
+  logger.log(`Microservice is listening on port ${envs.port}`);
+   
 }
 bootstrap();

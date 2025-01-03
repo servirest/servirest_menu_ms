@@ -1,15 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Controller, ParseIntPipe } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CategoriesService } from './categories.service';
 import { Category } from './entities/category.entity';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller()
 export class CategoriesController {
   constructor(private readonly categoryService: CategoriesService) {}
 
   @MessagePattern({ cmd: 'find_all_categories' })
-  async findAll(): Promise<Category[]> {
-    return this.categoryService.findAll();
+  async findAll(@Payload() paginationDto : PaginationDto) {
+    return this.categoryService.findAll(paginationDto);
   }
 
   @MessagePattern({ cmd: 'create_category' })
@@ -34,5 +35,11 @@ export class CategoriesController {
     @Payload() { id, status }: { id: number; status: boolean },
   ): Promise<Category> {
     return this.categoryService.updateStatus(id, status);
+  }
+  
+  @MessagePattern({ cmd: 'remove_category' })
+  async remove(
+    @Payload('id', ParseIntPipe) id: number ) {
+    return this.categoryService.remove(id);
   }
 }
